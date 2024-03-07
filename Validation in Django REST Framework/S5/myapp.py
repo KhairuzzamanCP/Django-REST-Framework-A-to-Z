@@ -13,6 +13,7 @@ def get_data(id = None):
     print(data)
 # get_data()
 
+
 def post_data():
     data = {
         'name':'korim',
