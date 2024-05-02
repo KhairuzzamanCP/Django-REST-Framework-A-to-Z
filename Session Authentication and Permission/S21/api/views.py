@@ -1,18 +1,22 @@
 from .models import Student
 from .serializers import StudentSerialzer
 from rest_framework import viewsets
-from rest_framework.authentication import BasicAuthentication
-from rest_framework.permissions import IsAuthenticated,AllowAny,IsAdminUser
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.permissions import IsAuthenticated,AllowAny,IsAdminUser,IsAuthenticatedOrReadOnly,DjangoModelPermissions,DjangoModelPermissionsOrAnonReadOnly
 
 
 
 class StudentModelViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerialzer
-    authentication_classes = [BasicAuthentication]
+    authentication_classes = [SessionAuthentication]
     # permission_classes = [IsAuthenticated]
     # permission_classes = [AllowAny]
-    permission_classes = [IsAdminUser]
+    # permission_classes = [IsAdminUser]
+    # permission_classes = [IsAdminUser]
+    # permission_classes = [IsAuthenticatedOrReadOnly]
+    # permission_classes = [DjangoModelPermissions]
+    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
 
 '''
 এই কোডটি একটি Django REST Framework viewset ক্লাস দেখাচ্ছে, যা স্টুডেন্ট মডেলের তথ্য সম্পর্কে অ্যাক্সেস করতে ব্যবহৃত হয়। এখানে কিছু গুরুত্বপূর্ণ বৈশিষ্ট্য আছে:
