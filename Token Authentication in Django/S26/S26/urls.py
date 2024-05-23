@@ -1,6 +1,4 @@
 """
-URL configuration for S17 project.
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
 Examples:
@@ -18,7 +16,7 @@ from django.contrib import admin
 from django.urls import path,include
 from api import views
 from rest_framework.routers import DefaultRouter
-from rest_framework.authtoken.views import obtain_auth_token
+from api.auth import CustomAuthToken
 
 
 # Creating Router Object
@@ -48,21 +46,20 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('gettoken/', obtain_auth_token),
+    path('gettoken/', CustomAuthToken.as_view()),
 ]
 
 '''
-path('admin/', admin.site.urls):
+path('admin/', admin.site.urls),:
 
-এই লাইনটি Django অ্যাডমিন সাইটের URL কনফিগার করে। যখন কেউ admin/ URL টি ব্রাউজ করবে, তখন তাকে Django অ্যাডমিন সাইটে নিয়ে যাবে।
-path('', include(router.urls)):
+এই লাইনটি অ্যাডমিন ইন্টারফেসের URL কনফিগার করে। যখন কেউ admin/ URL-এ যাবে, তখন Django এর ডিফল্ট অ্যাডমিন সাইট ভিউ দেখাবে।
+path('', include(router.urls)),:
 
-এখানে মূল (root) URL কে নির্দেশ করছে। include(router.urls) দ্বারা এটি একটি রাউটার অবজেক্টের সমস্ত URL গুলো অন্তর্ভুক্ত করছে। সাধারণত এটা REST API এর বিভিন্ন এন্ডপয়েন্ট গুলোকে অন্তর্ভুক্ত করতে ব্যবহৃত হয়।
-path('auth/', include('rest_framework.urls', namespace='rest_framework')):
+এখানে router.urls অন্তর্ভুক্ত করা হয়েছে যা মূল রাউটারের সাথে সংযুক্ত সব URL কে নির্দেশ করে। এটির মাধ্যমে API রাউটগুলোকে মূল অ্যাপের URL প্যাটার্নের সাথে যুক্ত করা হয়।
+path('auth/', include('rest_framework.urls', namespace='rest_framework')),:
 
-এই URL প্যাটার্নটি Django REST ফ্রেমওয়ার্কের বিল্ট-ইন অথেন্টিকেশন সিস্টেমের URL গুলো অন্তর্ভুক্ত করছে। auth/ URL দিয়ে শুরু হলে, ব্যবহারকারী লগইন এবং লগআউট ইত্যাদি জন্য এই URL গুলো ব্যবহার করতে পারবে।
-path('gettoken/', obtain_auth_token):
+এই লাইনটি Django REST framework এর ডিফল্ট অথেন্টিকেশন URL গুলো অন্তর্ভুক্ত করে। auth/ URL এর মাধ্যমে লগইন, লগআউট এবং পাসওয়ার্ড পরিবর্তন ইত্যাদি কার্যক্রম সম্পন্ন করা যায়।
+path('gettoken/', CustomAuthToken.as_view()),:
 
-এই লাইনটি একটি কাস্টম URL প্যাটার্ন কনফিগার করছে। gettoken/ URL টি ব্রাউজ করলে, ব্যবহারকারী একটি টোকেন (Token) পাবে। এটি সাধারণত API তে অথেন্টিকেশন করার জন্য ব্যবহৃত হয়।
-এইভাবে, এই কোড ব্লকটি Django প্রজেক্টে বিভিন্ন URL প্যাটার্ন সেটআপ করে এবং সেগুলোর সাথে সম্পর্কিত ভিউ বা ফাংশনগুলোকে নির্দেশ করে, যা বিভিন্ন কাজের জন্য ব্যবহৃত হয়।
+এই URL প্যাটার্নটি CustomAuthToken ভিউ এর সাথে সংযুক্ত যা সাধারণত একটি কাস্টম টোকেন অথেন্টিকেশন সিস্টেম ব্যবহারের জন্য ব্যবহৃত হয়। gettoken/ URL এর মাধ্যমে ব্যবহারকারী টোকেন জেনারেট বা রিসিভ করতে পারে।
 '''
