@@ -47,7 +47,7 @@ basename='student': এটি হল এপিআই এর নামের ব�
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
-    path('auth/', include('rest_framework.urls', namespace='rest_framework'))
+    
 ]
 
 '''
