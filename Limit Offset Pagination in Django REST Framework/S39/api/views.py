@@ -25,7 +25,7 @@ serializer_class = StudentSerializer:
 এই ভিউতে ডেটা কীভাবে দেখানো হবে তা নির্ধারণ করার জন্য StudentSerializer ব্যবহার করা হয়েছে।
 
 pagination_class = MyOffsetPagination:
-আগের তৈরি MyOffsetPagination পেজিনেশন ক্লাসটি এখানে ব্যবহার করা হয়েছে, যাতে শিক্ষার্থীদের তালিকাটি পেজিনেট করা যায়।s
+আগের তৈরি MyOffsetPagination পেজিনেশন ক্লাসটি এখানে ব্যবহার করা হয়েছে, যাতে শিক্ষার্থীদের তালিকাটি পেজিনেট করা যায়।
 '''
 
 class StudentCreate(APIView):
