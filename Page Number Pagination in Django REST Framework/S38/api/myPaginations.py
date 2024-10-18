@@ -5,6 +5,7 @@ class MyPageNumberPagination(PageNumberPagination):
     page_query_param = 'p'
     page_size_query_param = 'records'
     max_page_size = 7
+    last_page_strings = 'end'
 
 '''
 MyPageNumberPagination ক্লাসটি Django Rest Framework (DRF)-এ পেজিনেশন পরিচালনার জন্য ব্যবহার করা হচ্ছে। এটি একটি কাস্টম পেজ নম্বর পেজিনেশন ক্লাস, যেখানে ডিফল্ট সেটিংস পরিবর্তন করে ব্যবহারকারীর চাহিদা অনুযায়ী কনফিগার করা হয়েছে। নিচে প্রতিটি সেটিং-এর বাংলা ব্যাখ্যা দেওয়া হলো:
